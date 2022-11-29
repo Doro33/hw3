@@ -1,0 +1,50 @@
+create table persons(
+                        person_id serial primary key,
+                        first_name varchar(32),
+                        last_name varchar(32),
+                        gender varchar(32),
+                        age int,
+                        score int,
+                        mobile_number varchar(15)
+);
+select * from persons;
+
+select * from persons
+where first_name like 'a%';
+
+select * from persons
+where persons.last_name like  '%c';
+
+select * from persons
+where first_name like '%\b%' or last_name like '%\b%';
+
+select * from persons
+where first_name like '%\m%' and last_name like '%\m%';
+
+select * from persons
+where first_name like '%\b%' or last_name like '%\b%' and 23<age;
+
+select * from persons
+where age = (select min(age) from persons );
+
+select * from persons
+where age = (select max(age) from persons );
+
+select avg(age) from persons;
+
+select count(person_id) from persons
+where 18<age;
+
+select age,count(age)from persons
+group by age
+order by age;
+
+select gender,avg(age) from persons
+group by gender;
+
+select gender ,count(person_id)from persons
+group by gender;
+
+select age,gender ,avg(score)from persons
+group by age, gender
+order by avg(score);
